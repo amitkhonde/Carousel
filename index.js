@@ -1,15 +1,19 @@
 let slides = document.getElementsByClassName('slide');
-let currentSlide = 0;
-window.setInterval(() => {
-	if(currentSlide == slides.length - 1) {
-		// reset all the classes and make currentSlide = 0;
-		for(var i = 0; i < slides.length; i++) {
-			slides[i].classList.remove("current-slide");
-		}
-		
-		currentSlide = 0;
-	} else {
+let slidesHolder = document.getElementById("slides");
+
+window.setTimeout(()=>{
+	slides[0].classList.add("current-slide");
+	startSlider();
+}, 1000);
+
+function startSlider() {
+	let currentSlide = 1;
+
+	window.setInterval(() => {	
 		slides[currentSlide].classList.add("current-slide");
-		currentSlide++;
-	}
-}, 2000);
+	
+		slides[currentSlide-1].classList.remove("current-slide");
+		slidesHolder.appendChild(slides[currentSlide - 1]);	
+		
+	}, 2000);
+}
